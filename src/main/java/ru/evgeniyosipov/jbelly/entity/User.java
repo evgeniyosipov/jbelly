@@ -3,6 +3,8 @@ package ru.evgeniyosipov.jbelly.entity;
 import com.sun.javafx.beans.IDProperty;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Evgeniy Osipov on 15.04.2017.
@@ -14,6 +16,7 @@ public class User {
     private String email;
     private String fullName;
     private String password;
+    private Set<Role> roles;
 
     public User() {
     }
@@ -22,6 +25,8 @@ public class User {
         this.email = email;
         this.fullName = fullName;
         this.password = password;
+
+        this.roles = new HashSet<>();
     }
 
     @Id
@@ -59,5 +64,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="users_roles")
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

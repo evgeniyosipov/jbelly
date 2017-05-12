@@ -1,6 +1,8 @@
 package ru.evgeniyosipov.jbelly.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Evgeniy Osipov on 15.04.2017.
@@ -10,6 +12,20 @@ import javax.persistence.*;
 public class Role {
     private Integer id;
     private String name;
+    private Set<User> users;
+
+    public Role(){
+        this.users = new HashSet<>();
+    }
+
+    @ManyToMany (mappedBy = "roles")
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
