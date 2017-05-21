@@ -1,16 +1,24 @@
 package ru.evgeniyosipov.jbelly.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import ru.evgeniyosipov.jbelly.bindingModel.UserBindingModel;
 import ru.evgeniyosipov.jbelly.entity.Role;
 import ru.evgeniyosipov.jbelly.entity.User;
 import ru.evgeniyosipov.jbelly.repository.RoleRepository;
 import ru.evgeniyosipov.jbelly.repository.UserRepository;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Evgeniy Osipov on 17.05.2017.
@@ -57,5 +65,15 @@ public class UserController {
         model.addAttribute("view", "user/login");
 
         return "base-layout";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+
+        return "redirect:/login?logout";
     }
 }
