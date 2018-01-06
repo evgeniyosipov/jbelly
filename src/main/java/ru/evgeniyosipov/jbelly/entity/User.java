@@ -1,7 +1,5 @@
 package ru.evgeniyosipov.jbelly.entity;
 
-import com.sun.javafx.beans.IDProperty;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +15,7 @@ public class User {
     private String fullName;
     private String password;
     private Set<Role> roles;
+    private Set<Article> articles;
 
     public User() {
     }
@@ -27,6 +26,7 @@ public class User {
         this.password = password;
 
         this.roles = new HashSet<>();
+        this.articles = new HashSet<>();
     }
 
     public void addRole(Role role){
@@ -78,5 +78,14 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @OneToMany(mappedBy = "author")
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
 }

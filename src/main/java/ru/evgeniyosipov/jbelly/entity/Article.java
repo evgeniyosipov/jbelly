@@ -47,6 +47,8 @@ public class Article {
         this.content = content;
     }
 
+    @ManyToOne()
+    @JoinColumn(nullable = false, name = "authorId")
     public User getAuthor() {
         return author;
     }
