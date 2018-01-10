@@ -19,6 +19,11 @@ public class Article {
         this.author = author;
     }
 
+    @Transient
+    public String getSummary(){
+        return this.getContent().substring(0, this.getContent().length() / 2) + "...";
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {

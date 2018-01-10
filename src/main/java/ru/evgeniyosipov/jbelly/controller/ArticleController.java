@@ -30,9 +30,23 @@ public class ArticleController {
         return "base-layout";
     }
 
+    @GetMapping("/article/{id}")
+    public String details(Model model, @PathVariable Integer id){
+        if(!this.articleRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Article article = this.articleRepository.findOne(id);
+
+        model.addAttribute("article", article);
+        model.addAttribute("view", "article/details");
+
+        return "base-layout";
+    }
+
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
-    public String createProcess (ArticleBindingModel articleBindingModel){
+    public String createProcess(ArticleBindingModel articleBindingModel){
         UserDetails user = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 
