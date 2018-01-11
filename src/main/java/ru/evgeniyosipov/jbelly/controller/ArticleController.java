@@ -45,6 +45,21 @@ public class ArticleController {
         return "base-layout";
     }
 
+    @GetMapping("/article/delete/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String delete(@PathVariable Integer id, Model model){
+        if(!this.articleRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Article article = this.articleRepository.findOne(id);
+
+        model.addAttribute("view", "article/delete");
+        model.addAttribute("article", article);
+
+        return "base-layout";
+    }
+
     @GetMapping("/article/{id}")
     public String details(Model model, @PathVariable Integer id){
         if(!this.articleRepository.exists(id)){
@@ -93,5 +108,19 @@ public class ArticleController {
         this.articleRepository.saveAndFlush(article);
 
         return "redirect:/article/" + article.getId();
+    }
+
+    @PostMapping("/article/delete/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String deleteProcess(@PathVariable Integer id){
+        if(!this.articleRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Article article = this.articleRepository.findOne(id);
+
+        this.articleRepository.delete(article);
+
+        return "redirect:/";
     }
 }
