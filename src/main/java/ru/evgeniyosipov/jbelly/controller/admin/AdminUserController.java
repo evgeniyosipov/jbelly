@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.evgeniyosipov.jbelly.bindingModel.UserEditBindingModel;
+import ru.evgeniyosipov.jbelly.entity.Article;
 import ru.evgeniyosipov.jbelly.entity.Role;
 import ru.evgeniyosipov.jbelly.entity.User;
 import ru.evgeniyosipov.jbelly.repository.ArticleRepository;
@@ -57,6 +58,20 @@ public class AdminUserController {
         return "base-layout";
     }
 
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, Model model){
+        if(!this.userRepository.exists(id)){
+            return "redirect:/admin/users/";
+        }
+
+        User user = this.userRepository.findOne(id);
+
+        model.addAttribute("user", user);
+        model.addAttribute("view", "admin/user/delete");
+
+        return "base-layout";
+    }
+
     @PostMapping("/edit/{id}")
     public String editProcess(@PathVariable Integer id, UserEditBindingModel userBindingModel){
         if(!this.userRepository.exists(id)){
@@ -87,6 +102,23 @@ public class AdminUserController {
         user.setRoles(roles);
 
         this.userRepository.saveAndFlush(user);
+
+        return "redirect:/admin/users/";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteProcess(@PathVariable Integer id){
+        if(!this.userRepository.exists(id)){
+            return "redirect:/admin/users/";
+        }
+
+        User user = this.userRepository.findOne(id);
+
+        for(Article article : user.getArticles()){
+            this.articleRepository.delete(article);
+        }
+
+        this.userRepository.delete(user);
 
         return "redirect:/admin/users/";
     }
