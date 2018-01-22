@@ -9,6 +9,7 @@ public class Article {
     private String title;
     private String content;
     private User author;
+    private Category category;
 
     public Article() {
     }
@@ -60,5 +61,15 @@ public class Article {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "categoryId")
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
