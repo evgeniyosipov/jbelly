@@ -3,8 +3,11 @@ package ru.evgeniyosipov.jbelly.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.evgeniyosipov.jbelly.bindingModel.CategoryBindingModel;
 import ru.evgeniyosipov.jbelly.entity.Category;
 import ru.evgeniyosipov.jbelly.repository.ArticleRepository;
 import ru.evgeniyosipov.jbelly.repository.CategoryRepository;
@@ -34,5 +37,25 @@ public class CategoryController {
         model.addAttribute("categories", categories);
 
         return "base-layout";
+    }
+
+    @GetMapping("/create")
+    public String create(Model model){
+        model.addAttribute("view", "admin/category/create");
+
+        return "base-layout";
+    }
+
+    @PostMapping("/create")
+    public String createProcess(CategoryBindingModel categoryBindingModel){
+        if(StringUtils.isEmpty(categoryBindingModel.getName())){
+            return "redirect:/admin/categories/create";
+        }
+
+        Category category = new Category(categoryBindingModel.getName());
+
+        this.categoryRepository.saveAndFlush(category);
+
+        return "redirect:/admin/categories/";
     }
 }
