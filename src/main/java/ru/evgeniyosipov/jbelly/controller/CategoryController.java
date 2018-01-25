@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.evgeniyosipov.jbelly.bindingModel.CategoryBindingModel;
+import ru.evgeniyosipov.jbelly.entity.Article;
 import ru.evgeniyosipov.jbelly.entity.Category;
 import ru.evgeniyosipov.jbelly.repository.ArticleRepository;
 import ru.evgeniyosipov.jbelly.repository.CategoryRepository;
@@ -61,6 +62,20 @@ public class CategoryController {
         return "base-layout";
     }
 
+    @GetMapping("/delete/{id}")
+    public String delete(Model model, @PathVariable Integer id){
+        if(!this.categoryRepository.exists(id)){
+            return "redirect:/admin/categories/";
+        }
+
+        Category category = this.categoryRepository.findOne(id);
+
+        model.addAttribute("view", "admin/category/delete");
+        model.addAttribute("category", category);
+
+        return "base-layout";
+    }
+
     @PostMapping("/create")
     public String createProcess(CategoryBindingModel categoryBindingModel){
         if(StringUtils.isEmpty(categoryBindingModel.getName())){
@@ -86,6 +101,23 @@ public class CategoryController {
         category.setName(categoryBindingModel.getName());
 
         this.categoryRepository.saveAndFlush(category);
+
+        return "redirect:/admin/categories/";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteProcess(@PathVariable Integer id){
+        if(!this.categoryRepository.exists(id)){
+            return "redirect:/admin/categories/";
+        }
+
+        Category category = this.categoryRepository.findOne(id);
+
+        for(Article article : category.getArticles()){
+            this.articleRepository.delete(article);
+        }
+
+        this.categoryRepository.delete(category);
 
         return "redirect:/admin/categories/";
     }
