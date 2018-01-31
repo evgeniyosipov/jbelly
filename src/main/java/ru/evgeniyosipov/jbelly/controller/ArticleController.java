@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.evgeniyosipov.jbelly.bindingModel.ArticleBindingModel;
 import ru.evgeniyosipov.jbelly.entity.Article;
+import ru.evgeniyosipov.jbelly.entity.Category;
 import ru.evgeniyosipov.jbelly.entity.User;
 import ru.evgeniyosipov.jbelly.repository.ArticleRepository;
+import ru.evgeniyosipov.jbelly.repository.CategoryRepository;
 import ru.evgeniyosipov.jbelly.repository.UserRepository;
+
+import java.util.List;
 
 @Controller
 public class ArticleController {
@@ -22,11 +26,16 @@ public class ArticleController {
     private ArticleRepository articleRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
     public String create(Model model){
+        List<Category> categories = this.categoryRepository.findAll();
+
         model.addAttribute("view", "article/create");
+        model.addAttribute("categories", categories);
 
         return "base-layout";
     }
@@ -100,11 +109,13 @@ public class ArticleController {
                 .getAuthentication().getPrincipal();
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
+        Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
 
         Article articleEntity = new Article(
                 articleBindingModel.getTitle(),
                 articleBindingModel.getContent(),
-                userEntity
+                userEntity,
+                category
         );
 
         this.articleRepository.saveAndFlush(articleEntity);

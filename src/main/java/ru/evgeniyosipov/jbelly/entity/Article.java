@@ -14,10 +14,11 @@ public class Article {
     public Article() {
     }
 
-    public Article(String title, String content, User author) {
+    public Article(String title, String content, User author, Category category) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.category = category;
     }
 
     @Transient
