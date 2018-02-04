@@ -53,8 +53,11 @@ public class ArticleController {
             return "redirect:/article/" + id;
         }
 
+        List<Category> categories = this.categoryRepository.findAll();
+
         model.addAttribute("view", "article/edit");
         model.addAttribute("article", article);
+        model.addAttribute("categories", categories);
 
         return "base-layout";
     }
@@ -136,6 +139,9 @@ public class ArticleController {
             return "redirect:/article/" + id;
         }
 
+        Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
+
+        article.setCategory(category);
         article.setContent(articleBindingModel.getContent());
         article.setTitle(articleBindingModel.getTitle());
 
