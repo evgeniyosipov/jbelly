@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.evgeniyosipov.jbelly.bindingModel.ArticleBindingModel;
 import ru.evgeniyosipov.jbelly.entity.Article;
 import ru.evgeniyosipov.jbelly.entity.Category;
+import ru.evgeniyosipov.jbelly.entity.Tag;
 import ru.evgeniyosipov.jbelly.entity.User;
 import ru.evgeniyosipov.jbelly.repository.ArticleRepository;
 import ru.evgeniyosipov.jbelly.repository.CategoryRepository;
+import ru.evgeniyosipov.jbelly.repository.TagRepository;
 import ru.evgeniyosipov.jbelly.repository.UserRepository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ArticleController {
@@ -28,6 +32,8 @@ public class ArticleController {
     private UserRepository userRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private TagRepository tagRepository;
 
     @GetMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
@@ -55,9 +61,14 @@ public class ArticleController {
 
         List<Category> categories = this.categoryRepository.findAll();
 
+        String tagString = article.getTags().stream()
+                .map(Tag::getName)
+                .collect(Collectors.joining(", "));
+
         model.addAttribute("view", "article/edit");
         model.addAttribute("article", article);
         model.addAttribute("categories", categories);
+        model.addAttribute("tags", tagString);
 
         return "base-layout";
     }
@@ -105,6 +116,24 @@ public class ArticleController {
         return "base-layout";
     }
 
+    private HashSet<Tag> findTagsFromString(String tagString){
+        HashSet<Tag> tags = new HashSet<>();
+        String[] tagNames = tagString.split(",\\s*");
+
+        for(String tagName : tagNames){
+            Tag currentTag = this.tagRepository.findByName(tagName);
+
+            if(currentTag == null){
+                currentTag = new Tag(tagName);
+                this.tagRepository.saveAndFlush(currentTag);
+            }
+
+            tags.add(currentTag);
+        }
+
+        return tags;
+    }
+
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
     public String createProcess(ArticleBindingModel articleBindingModel){
@@ -113,12 +142,14 @@ public class ArticleController {
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
         Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
+        HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
 
         Article articleEntity = new Article(
                 articleBindingModel.getTitle(),
                 articleBindingModel.getContent(),
                 userEntity,
-                category
+                category,
+                tags
         );
 
         this.articleRepository.saveAndFlush(articleEntity);
@@ -140,10 +171,12 @@ public class ArticleController {
         }
 
         Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
+        HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
 
         article.setCategory(category);
         article.setContent(articleBindingModel.getContent());
         article.setTitle(articleBindingModel.getTitle());
+        article.setTags(tags);
 
         this.articleRepository.saveAndFlush(article);
 

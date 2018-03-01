@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 public class ArticleBindingModel {
     @NotNull
     private String title;
+    private String tagString;
 
     @NotNull
     private String content;
@@ -33,5 +34,13 @@ public class ArticleBindingModel {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getTagString() {
+        return tagString;
+    }
+
+    public void setTagString(String tagString) {
+        this.tagString = tagString;
     }
 }
