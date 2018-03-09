@@ -14,9 +14,6 @@ import ru.evgeniyosipov.jbelly.repository.CategoryRepository;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Evgeniy Osipov on 17.05.2017.
- */
 @Controller
 public class HomeController {
     @Autowired

@@ -22,9 +22,6 @@ import ru.evgeniyosipov.jbelly.repository.UserRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by Evgeniy Osipov on 17.05.2017.
- */
 @Controller
 public class UserController {
     @Autowired

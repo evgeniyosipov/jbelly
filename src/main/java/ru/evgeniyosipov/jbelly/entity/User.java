@@ -5,9 +5,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * Created by Evgeniy Osipov on 15.04.2017.
- */
 @Entity
 @Table(name = "users")
 public class User {

@@ -12,9 +12,6 @@ import ru.evgeniyosipov.jbelly.repository.UserRepository;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Created by Evgeniy Osipov on 14.05.2017.
- */
 @Service("blogUserDetailsService")
 public class BlogUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;

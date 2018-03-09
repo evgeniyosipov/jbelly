@@ -2,9 +2,6 @@ package ru.evgeniyosipov.jbelly.bindingModel;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Evgeniy Osipov on 20.05.2017.
- */
 public class UserBindingModel {
     @NotNull
     private String email;

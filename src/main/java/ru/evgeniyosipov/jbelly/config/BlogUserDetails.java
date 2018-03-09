@@ -9,9 +9,6 @@ import ru.evgeniyosipov.jbelly.entity.User;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by Evgeniy Osipov on 12.05.2017.
- */
 public class BlogUserDetails extends User implements UserDetails {
     private ArrayList<String> roles;
     private User user;

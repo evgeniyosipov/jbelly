@@ -6,9 +6,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Evgeniy Osipov on 15.04.2017.
- */
 @Entity
 @Table(name = "roles")
 public class Role {
