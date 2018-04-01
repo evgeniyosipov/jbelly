@@ -29,6 +29,7 @@ local.properties
 
 # Java annotation processor (APT)
 .factorypath
+.apt_generated
 
 # PDT-specific (PHP Development Tools)
 .buildpath
@@ -44,6 +45,7 @@ local.properties
 
 # STS (Spring Tool Suite)
 .springBeans
+.sts4-cache
 
 # Code Recommenders
 .recommenders/
