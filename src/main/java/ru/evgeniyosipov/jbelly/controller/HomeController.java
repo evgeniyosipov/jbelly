@@ -18,13 +18,17 @@ import java.util.Set;
 public class HomeController {
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private ArticleRepository articleRepository;
 
     @GetMapping("/")
     public String index(Model model){
+        List<Article> articles = this.articleRepository.findAll();
         List<Category> categories = this.categoryRepository.findAll();
 
         model.addAttribute("view", "home/index");
         model.addAttribute("categories", categories);
+        model.addAttribute("articles", articles);
 
         return "base-layout";
     }
