@@ -2,7 +2,7 @@
     <div class="container body-content">
         <div class="row">
 
-            <th:block th:each="category : ${categories}">
+            <!-- <th:block th:each="category : ${categories}"> -->
             <th:block th:each="article : ${articles}" >
                 <div class="col-md-6">
                     <article>
@@ -15,7 +15,7 @@
                         <small class="author" th:text="${article.author.fullName}"></small>
 
                         <footer>
-                            <th:block th:text="${category.name}"></th:block>
+                            <!-- <th:block th:text="${category.name}"></th:block> -->
                             <div class="pull-right">
                                 <a class="btn btn-default btn-xs"
                                    th:href="@{/article/{id}(id=${article.id})}">Read more &raquo;</a>
@@ -24,7 +24,7 @@
                     </article>
                 </div>
             </th:block>
-            </th:block>
+           <!-- </th:block> -->
         </div>
     </div>
 </main>
