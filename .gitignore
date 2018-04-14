@@ -1,9 +1,6 @@
 
 # Created by https://www.gitignore.io/api/java,maven,intellij,eclipse,netbeans,linux,macos,windows
 
-/target/
-!.mvn/wrapper/maven-wrapper.jar
-
 ### Eclipse ###
 
 .metadata
@@ -199,6 +196,7 @@ Temporary Items
 .apdisk
 
 ### Maven ###
+!.mvn/wrapper/maven-wrapper.jar
 target/
 pom.xml.tag
 pom.xml.releaseBackup
