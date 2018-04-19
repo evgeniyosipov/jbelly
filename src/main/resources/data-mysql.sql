@@ -10,3 +10,10 @@ INSERT IGNORE INTO categories(id, name)VALUES(3, "TEST_CATEGORY_3");
 INSERT IGNORE INTO articles(id, content, title, author_id, category_id)VALUES(1, "TEST_CONTENT_1", "TEST_TITLE_1", 2, 1);
 INSERT IGNORE INTO articles(id, content, title, author_id, category_id)VALUES(2, "TEST_CONTENT_2", "TEST_TITLE_2", 2, 2);
 INSERT IGNORE INTO articles(id, content, title, author_id, category_id)VALUES(3, "TEST_CONTENT_3", "TEST_TITLE_3", 2, 3);
+INSERT IGNORE INTO tags(id, name)VALUES(1, "TEST_TAG_1");
+INSERT IGNORE INTO tags(id, name)VALUES(2, "TEST_TAG_2");
+INSERT IGNORE INTO tags(id, name)VALUES(3, "TEST_TAG_3");
+INSERT IGNORE INTO articles_tags(articles_id, tags_id)VALUES(1, 1);
+INSERT IGNORE INTO articles_tags(articles_id, tags_id)VALUES(2, 2);
+INSERT IGNORE INTO articles_tags(articles_id, tags_id)VALUES(3, 3);
+

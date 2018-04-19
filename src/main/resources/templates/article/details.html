@@ -9,7 +9,7 @@
 
                     <p th:text="${article.content}"> </p>
 
-                    <small class="author" th:text="${article.author.fullName}"></small>
+                    <p class="author" th:text="${article.author.fullName}"></p>
 
                     <p>
                         <a class="btn btn-default btn-xs" th:each="tag:${article.tags}" th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
