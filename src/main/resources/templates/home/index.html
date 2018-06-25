@@ -2,9 +2,8 @@
     <div class="container body-content">
         <div class="row">
 
-            <!-- <th:block th:each="category : ${categories}"> -->
+            <div class="col-md-10">
             <th:block th:each="article : ${articles}" >
-                <div class="col-md-12">
                     <article>
                         <header>
                             <h2 th:text="${article.title}"></h2>
@@ -15,17 +14,27 @@
                         <p class="author" th:text="${article.author.fullName}"></p>
 
                         <footer>
-                            <!-- <th:block th:text="${category.name}"></th:block> -->
                             <div class="pull-left">
                                 <a class="btn btn-default btn-xs"
                                    th:href="@{/article/{id}(id=${article.id})}">Read more &raquo;</a>
                             </div>
                         </footer>
                     </article>
-                </div>
                 <br/>
             </th:block>
-           <!-- </th:block> -->
+            </div>
+
+            <div class="col-md-2">
+            <div>
+                Categories:
+            </div>
+            <th:block th:each="category : ${categories}">
+                <a th:href="@{/category/{id}(id=${category.id})}">
+                <th:block th:text="${category.name}"></th:block>
+                </a>
+            </th:block>
+            </div>
+
         </div>
     </div>
 </main>
