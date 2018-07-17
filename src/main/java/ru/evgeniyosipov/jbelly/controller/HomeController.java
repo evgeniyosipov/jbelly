@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.evgeniyosipov.jbelly.entity.Article;
 import ru.evgeniyosipov.jbelly.entity.Category;
+import ru.evgeniyosipov.jbelly.entity.Tag;
 import ru.evgeniyosipov.jbelly.repository.ArticleRepository;
 import ru.evgeniyosipov.jbelly.repository.CategoryRepository;
+import ru.evgeniyosipov.jbelly.repository.TagRepository;
 
 import java.util.List;
 import java.util.Set;
@@ -20,15 +22,19 @@ public class HomeController {
     private CategoryRepository categoryRepository;
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private TagRepository tagRepository;
 
     @GetMapping("/")
     public String index(Model model){
         List<Article> articles = this.articleRepository.findAll();
         List<Category> categories = this.categoryRepository.findAll();
+        List<Tag> tags = this.tagRepository.findAll();;
 
         model.addAttribute("view", "home/index");
         model.addAttribute("categories", categories);
         model.addAttribute("articles", articles);
+        model.addAttribute("tags", tags);
 
         return "base-layout";
     }

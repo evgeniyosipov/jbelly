@@ -33,6 +33,17 @@
                 <th:block th:text="${category.name}"></th:block>
                 </a>
             </th:block>
+
+            <br/><br/>
+
+            <div>
+                Tags:
+            </div>
+            <th:block th:each="tag : ${tags}">
+                <a th:href="@{/tag/{name}(name=${tag.name})}">
+                <th:block th:text="${tag.name}"></th:block>
+                </a>
+            </th:block>
             </div>
 
         </div>
