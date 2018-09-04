@@ -49,7 +49,7 @@ public class Article {
         this.title = title;
     }
 
-    @Column(columnDefinition = "text", nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     public String getContent() {
         return content;
     }
