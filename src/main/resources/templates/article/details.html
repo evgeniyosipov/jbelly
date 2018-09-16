@@ -7,6 +7,8 @@
                         <h2 th:text="${article.title}"></h2>
                     </header>
 
+                    <p th:utext="${article.entry}"></p>
+
                     <p th:utext="${article.content}"></p>
 
                     <p class="author" th:text="${article.author.fullName}"></p>
@@ -16,7 +18,6 @@
                     </p>
 
                     <footer>
-
                         <div class="pull-left">
                             <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthor(article)}">
                             <a class="btn btn-success btn-xs" th:href="@{/article/edit/{id}(id = ${article.id})}">Edit</a>

@@ -146,6 +146,7 @@ public class ArticleController {
 
         Article articleEntity = new Article(
                 articleBindingModel.getTitle(),
+                articleBindingModel.getEntry(),
                 articleBindingModel.getContent(),
                 userEntity,
                 category,
@@ -174,8 +175,9 @@ public class ArticleController {
         HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
 
         article.setCategory(category);
-        article.setContent(articleBindingModel.getContent());
         article.setTitle(articleBindingModel.getTitle());
+        article.setEntry(articleBindingModel.getEntry());
+        article.setContent(articleBindingModel.getContent());
         article.setTags(tags);
 
         this.articleRepository.saveAndFlush(article);

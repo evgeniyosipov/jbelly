@@ -5,10 +5,14 @@ import javax.validation.constraints.NotNull;
 public class ArticleBindingModel {
     @NotNull
     private String title;
-    private String tagString;
+
+    @NotNull
+    private String entry;
 
     @NotNull
     private String content;
+
+    private String tagString;
 
     private Integer categoryId;
 
@@ -18,6 +22,14 @@ public class ArticleBindingModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getEntry() {
+        return entry;
+    }
+
+    public void setEntry(String entry) {
+        this.entry = entry;
     }
 
     public String getContent() {

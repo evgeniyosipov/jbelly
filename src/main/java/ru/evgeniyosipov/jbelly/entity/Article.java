@@ -10,6 +10,7 @@ public class Article {
     private Integer id;
     private String title;
     private String content;
+    private String entry;
     private User author;
     private Category category;
     private Set<Tag> tags;
@@ -17,17 +18,13 @@ public class Article {
     public Article() {
     }
 
-    public Article(String title, String content, User author, Category category, HashSet<Tag> tags) {
+    public Article(String title, String entry, String content, User author, Category category, HashSet<Tag> tags) {
         this.title = title;
+        this.entry = entry;
         this.content = content;
         this.author = author;
         this.category = category;
         this.tags = tags;
-    }
-
-    @Transient
-    public String getSummary(){
-        return this.getContent().substring(0, this.getContent().length() / 2) + "...";
     }
 
     @Id
@@ -47,6 +44,15 @@ public class Article {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    public String getEntry() {
+        return entry;
+    }
+
+    public void setEntry(String entry) {
+        this.entry = entry;
     }
 
     @Column(columnDefinition = "LONGTEXT", nullable = false)
