@@ -24,7 +24,7 @@ Admin admin@example.com password: 1
 
 User user@example.com password: 1
 
-Big thanks to SofUni and Svetlin Nakov for great information.
+Big thanks to SoftUni and Svetlin Nakov for great information.
 
 <img src="sample-images/jbelly-index-compact.PNG"/>
 <img src="sample-images/jbelly-post.PNG"/>
