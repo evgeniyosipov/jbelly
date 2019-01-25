@@ -94,6 +94,9 @@ public class ArticleController {
 
     @GetMapping("/article/{id}")
     public String details(Model model, @PathVariable Integer id){
+        List<Category> categories = this.categoryRepository.findAll();
+        List<Tag> tags = this.tagRepository.findAll();
+
         if(!this.articleRepository.exists(id)){
             return "redirect:/";
         }
@@ -112,6 +115,8 @@ public class ArticleController {
 
         model.addAttribute("view", "article/details");
         model.addAttribute("article", article);
+        model.addAttribute("categories", categories);
+        model.addAttribute("tags", tags);
 
         return "base-layout";
     }

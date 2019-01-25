@@ -29,7 +29,7 @@ public class HomeController {
     public String index(Model model){
         List<Article> articles = this.articleRepository.findAll();
         List<Category> categories = this.categoryRepository.findAll();
-        List<Tag> tags = this.tagRepository.findAll();;
+        List<Tag> tags = this.tagRepository.findAll();
 
         model.addAttribute("view", "home/index");
         model.addAttribute("categories", categories);
