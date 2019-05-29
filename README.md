@@ -16,7 +16,7 @@ Built with:
 
 Can be build in any IDE that supporting Maven projects. 
 
-Before launch need to create **jbelly** database (mysql or mariadb) with UTF-8 encoding (utf8mb4_general_ci). See [application.properties](https://github.com/evgeniyosipov/jbelly/blob/master/src/main/resources/application.properties).
+Before launch need to create **jbelly** database (mysql or mariadb) with UTF-8 encoding (utf8mb4_unicode_ci). See [application.properties](https://github.com/evgeniyosipov/jbelly/blob/master/src/main/resources/application.properties).
 
 Blog url - http://localhost:8080/
 
