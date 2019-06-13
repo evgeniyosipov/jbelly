@@ -14,9 +14,21 @@ Built with:
 * Bootstrap 3
 * Summernote
 
-Can be build in any IDE that supporting Maven projects. 
+Can be build in any IDE that supporting Maven projects or run manually:
 
-Before launch need to create **jbelly** database (mysql or mariadb) with UTF-8 encoding (utf8mb4_unicode_ci). See [application.properties](https://github.com/evgeniyosipov/jbelly/blob/master/src/main/resources/application.properties).
+**Full:**
+
+$ mvn clean
+
+$ mvn package
+
+$ java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar
+
+**Short:**
+
+$ mvn spring-boot:run
+
+Before launch need to start MySQL/MariaDB server and create **jbelly** database with UTF-8 encoding (utf8mb4_unicode_ci). See [application.properties](https://github.com/evgeniyosipov/jbelly/blob/master/src/main/resources/application.properties).
 
 Blog url - http://localhost:8080/
 
