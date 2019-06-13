@@ -68,6 +68,43 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.6</version>
+				<executions>
+					<execution>
+						<id>default-minify</id>
+						<phase>package</phase>
+						<configuration>
+							<charset>UTF-8</charset>
+							<webappSourceDir>${basedir}/src/main/resources/static</webappSourceDir>
+							<webappTargetDir>${project.build.outputDirectory}/static</webappTargetDir>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceFiles>
+								<jsSourceFile>bootstrap.css</jsSourceFile>
+								<jsSourceFile>summernote.css</jsSourceFile>
+							</cssSourceFiles>
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>
+								<jsSourceFile>bootstrap.js</jsSourceFile>
+								<jsSourceFile>jquery.js</jsSourceFile>
+								<jsSourceFile>summernote.js</jsSourceFile>
+							</jsSourceFiles>
+							<jsEngine>CLOSURE</jsEngine>
+							<closureWarningLevels>
+								<nonStandardJsDocs>OFF</nonStandardJsDocs>
+							</closureWarningLevels>
+							<skipMerge>true</skipMerge>
+							<nosuffix>true</nosuffix>
+							<verbose>true</verbose>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
