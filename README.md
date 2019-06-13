@@ -19,9 +19,7 @@ Can be build in any IDE that supporting Maven projects or run manually:
 **Full:**
 
 $ mvn clean
-
 $ mvn package
-
 $ java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar
 
 **Short:**
