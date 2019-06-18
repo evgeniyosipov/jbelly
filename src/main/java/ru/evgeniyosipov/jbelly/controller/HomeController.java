@@ -48,11 +48,11 @@ public class HomeController {
 
     @GetMapping("/category/{id}")
     public String listArticles(Model model, @PathVariable Integer id){
-        if(!this.categoryRepository.exists(id)){
+        if(!this.categoryRepository.existsById(id)){
             return "redirect:/";
         }
 
-        Category category = this.categoryRepository.findOne(id);
+        Category category = this.categoryRepository.findById(id).orElse(null);
         Set<Article> articles = category.getArticles();
 
         model.addAttribute("view", "home/list-articles");

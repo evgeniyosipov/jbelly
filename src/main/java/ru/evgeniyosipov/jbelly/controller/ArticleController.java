@@ -49,11 +49,11 @@ public class ArticleController {
     @GetMapping("/article/edit/{id}")
     @PreAuthorize("isAuthenticated()")
     public String edit(@PathVariable Integer id, Model model){
-        if(!this.articleRepository.exists(id)){
+        if(!this.articleRepository.existsById(id)){
             return "redirect:/";
         }
 
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleRepository.findById(id).orElse(null);
 
         if(!isUserAuthorOrAdmin(article)){
             return "redirect:/article/" + id;
@@ -76,11 +76,11 @@ public class ArticleController {
     @GetMapping("/article/delete/{id}")
     @PreAuthorize("isAuthenticated()")
     public String delete(@PathVariable Integer id, Model model){
-        if(!this.articleRepository.exists(id)){
+        if(!this.articleRepository.existsById(id)){
             return "redirect:/";
         }
 
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleRepository.findById(id).orElse(null);
 
         if(!isUserAuthorOrAdmin(article)){
             return "redirect:/article/" + id;
@@ -97,7 +97,7 @@ public class ArticleController {
         List<Category> categories = this.categoryRepository.findAll();
         List<Tag> tags = this.tagRepository.findAll();
 
-        if(!this.articleRepository.exists(id)){
+        if(!this.articleRepository.existsById(id)){
             return "redirect:/";
         }
 
@@ -111,7 +111,7 @@ public class ArticleController {
             model.addAttribute("user", entityUser);
         }
 
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleRepository.findById(id).orElse(null);
 
         model.addAttribute("view", "article/details");
         model.addAttribute("article", article);
@@ -146,7 +146,7 @@ public class ArticleController {
                 .getAuthentication().getPrincipal();
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
-        Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
+        Category category = this.categoryRepository.findById(articleBindingModel.getCategoryId()).orElse(null);
         HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
 
         Article articleEntity = new Article(
@@ -166,17 +166,17 @@ public class ArticleController {
     @PostMapping("/article/edit/{id}")
     @PreAuthorize("isAuthenticated()")
     public String editProcess(@PathVariable Integer id, ArticleBindingModel articleBindingModel){
-        if(!this.articleRepository.exists(id)){
+        if(!this.articleRepository.existsById(id)){
             return "redirect:/";
         }
 
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleRepository.findById(id).orElse(null);
 
         if(!isUserAuthorOrAdmin(article)){
             return "redirect:/article/" + id;
         }
 
-        Category category = this.categoryRepository.findOne(articleBindingModel.getCategoryId());
+        Category category = this.categoryRepository.findById(articleBindingModel.getCategoryId()).orElse(null);
         HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
 
         article.setCategory(category);
@@ -193,11 +193,11 @@ public class ArticleController {
     @PostMapping("/article/delete/{id}")
     @PreAuthorize("isAuthenticated()")
     public String deleteProcess(@PathVariable Integer id){
-        if(!this.articleRepository.exists(id)){
+        if(!this.articleRepository.existsById(id)){
             return "redirect:/";
         }
 
-        Article article = this.articleRepository.findOne(id);
+        Article article = this.articleRepository.findById(id).orElse(null);
 
         if(!isUserAuthorOrAdmin(article)){
             return "redirect:/article/" + id;

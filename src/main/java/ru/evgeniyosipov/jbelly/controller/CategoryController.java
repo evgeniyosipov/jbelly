@@ -50,11 +50,11 @@ public class CategoryController {
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Integer id){
-        if(!this.categoryRepository.exists(id)){
+        if(!this.categoryRepository.existsById(id)){
             return "redirect:/admin/categories/";
         }
 
-        Category category = this.categoryRepository.findOne(id);
+        Category category = this.categoryRepository.findById(id).orElse(null);
 
         model.addAttribute("view", "admin/category/edit");
         model.addAttribute("category", category);
@@ -64,11 +64,11 @@ public class CategoryController {
 
     @GetMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Integer id){
-        if(!this.categoryRepository.exists(id)){
+        if(!this.categoryRepository.existsById(id)){
             return "redirect:/admin/categories/";
         }
 
-        Category category = this.categoryRepository.findOne(id);
+        Category category = this.categoryRepository.findById(id).orElse(null);
 
         model.addAttribute("view", "admin/category/delete");
         model.addAttribute("category", category);
@@ -92,11 +92,11 @@ public class CategoryController {
     @PostMapping("/edit/{id}")
     public String editProcess(@PathVariable Integer id,
                               CategoryBindingModel categoryBindingModel){
-        if(!this.categoryRepository.exists(id)){
+        if(!this.categoryRepository.existsById(id)){
             return "redirect:/admin/categories/";
         }
 
-        Category category = this.categoryRepository.findOne(id);
+        Category category = this.categoryRepository.findById(id).orElse(null);
 
         category.setName(categoryBindingModel.getName());
 
@@ -107,11 +107,11 @@ public class CategoryController {
 
     @PostMapping("/delete/{id}")
     public String deleteProcess(@PathVariable Integer id){
-        if(!this.categoryRepository.exists(id)){
+        if(!this.categoryRepository.existsById(id)){
             return "redirect:/admin/categories/";
         }
 
-        Category category = this.categoryRepository.findOne(id);
+        Category category = this.categoryRepository.findById(id).orElse(null);
 
         for(Article article : category.getArticles()){
             this.articleRepository.delete(article);

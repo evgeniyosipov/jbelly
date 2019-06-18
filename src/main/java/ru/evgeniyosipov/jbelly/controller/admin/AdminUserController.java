@@ -43,11 +43,11 @@ public class AdminUserController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        if(!this.userRepository.exists(id)){
+        if(!this.userRepository.existsById(id)){
             return "redirect:/admin/users/";
         }
 
-        User user = this.userRepository.findOne(id);
+        User user = this.userRepository.findById(id).orElse(null);
         List<Role> roles = this.roleRepository.findAll();
 
         model.addAttribute("user", user);
@@ -59,11 +59,11 @@ public class AdminUserController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model){
-        if(!this.userRepository.exists(id)){
+        if(!this.userRepository.existsById(id)){
             return "redirect:/admin/users/";
         }
 
-        User user = this.userRepository.findOne(id);
+        User user = this.userRepository.findById(id).orElse(null);
 
         model.addAttribute("user", user);
         model.addAttribute("view", "admin/user/delete");
@@ -73,11 +73,11 @@ public class AdminUserController {
 
     @PostMapping("/edit/{id}")
     public String editProcess(@PathVariable Integer id, UserEditBindingModel userBindingModel){
-        if(!this.userRepository.exists(id)){
+        if(!this.userRepository.existsById(id)){
             return "redirect:/admin/users/";
         }
 
-        User user = this.userRepository.findOne(id);
+        User user = this.userRepository.findById(id).orElse(null);
 
         if(!StringUtils.isEmpty(userBindingModel.getPassword())
             && !StringUtils.isEmpty(userBindingModel.getConfirmPassword())){
@@ -95,7 +95,7 @@ public class AdminUserController {
         Set<Role> roles = new HashSet<>();
 
         for(Integer roleId : userBindingModel.getRoles()){
-            roles.add(this.roleRepository.findOne(roleId));
+            roles.add(this.roleRepository.findById(roleId).orElse(null));
         }
 
         user.setRoles(roles);
@@ -107,11 +107,11 @@ public class AdminUserController {
 
     @PostMapping("/delete/{id}")
     public String deleteProcess(@PathVariable Integer id){
-        if(!this.userRepository.exists(id)){
+        if(!this.userRepository.existsById(id)){
             return "redirect:/admin/users/";
         }
 
-        User user = this.userRepository.findOne(id);
+        User user = this.userRepository.findById(id).orElse(null);
 
         for(Article article : user.getArticles()){
             this.articleRepository.delete(article);
