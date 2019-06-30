@@ -36,13 +36,10 @@ Admin admin@example.com password: 1
 
 User user@example.com password: 1
 
+Please see <a href="SAMPLE-IMAGES.md">SAMPLE-IMAGES.md</a> for more screenshots.
+
 Big thanks to SoftUni and Svetlin Nakov for great information.
 
-<img src="sample-images/jbelly-index-compact.PNG"/>
-<img src="sample-images/jbelly-post.PNG"/>
-<img src="sample-images/jbelly-create.PNG"/>
-<img src="sample-images/jbelly-edit.PNG"/>
-<img src="sample-images/jbelly-profile.PNG"/>
-<img src="sample-images/jbelly-index-admin.PNG"/>
-<img src="sample-images/jbelly-admin-categories.PNG"/>
-<img src="sample-images/jbelly-admin-users.PNG"/>
+Also special thanks to JetBrains for providing Intellij IDEA license for this project.
+
+<a href="https://www.jetbrains.com/?from=Jbelly"><img src="sample-images/jetbrains.png" width="150"/></a>
