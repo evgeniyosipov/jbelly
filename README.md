@@ -14,7 +14,15 @@ Built with:
 * Bootstrap 3
 * Summernote
 
-Can be build in any IDE that supporting Maven projects or run manually:
+<br />
+
+Before launch need to start MySQL/MariaDB server and create **jbelly** database with UTF-8 encoding (utf8mb4_unicode_ci). 
+
+Please, see [application.properties](src/main/resources/application.properties) for additional settings.
+
+<br />
+
+Can be build/run in any IDE that supporting Maven projects or manually:
 
 **Full:**
 
@@ -28,9 +36,7 @@ $ java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar
 
 $ mvn spring-boot:run
 
-Before launch need to start MySQL/MariaDB server and create **jbelly** database with UTF-8 encoding (utf8mb4_unicode_ci). 
-
-Please, see [application.properties](src/main/resources/application.properties) for additional settings.
+<br />
 
 Blog url - http://localhost:8080/
 
@@ -38,7 +44,11 @@ Admin admin@example.com password: 1
 
 User user@example.com password: 1
 
+<br />
+
 Please, see <a href="SAMPLE-IMAGES.md">SAMPLE-IMAGES.md</a> for more screenshots.
+
+<br />
 
 Big thanks to SoftUni and Svetlin Nakov for great information.
 
