@@ -4,5 +4,9 @@ dist: bionic
 
 jdk: openjdk11
 
+services:
+  - mysql
+
 before_install:
   - chmod +x mvnw
+  - mysql -e 'CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'
