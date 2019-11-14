@@ -4,6 +4,8 @@
 
 Lightweight Java Blog Engine based on Spring Boot.
 
+[![Build Status](https://travis-ci.com/evgeniyosipov/jbelly.svg?branch=master)](https://travis-ci.com/evgeniyosipov/jbelly)
+
 Built with:
 * Spring Boot 2.2 (web, security, jpa, devtools)
 * Thymeleaf (engine + springsecurity5)
