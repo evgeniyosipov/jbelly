@@ -4,7 +4,7 @@ environment:
   matrix:
     - JAVA_HOME: C:\Program Files\Java\jdk11
 
-os: Windows Server 2019
+os: Windows server 2019
 
 install:
   - javac -version
