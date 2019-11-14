@@ -17,10 +17,9 @@ init:
   - javac -version
   - mvn --version
 
-install:
-  - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" -uroot
 
 build_script:
+  - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" --user=root
   - mvn clean package --batch-mode -DskipTest
 
 test_script:
