@@ -16,10 +16,9 @@ init:
   - SET PATH=%JAVA_HOME%\bin;%MYSQL_PATH%\bin;%PATH%
   - javac -version
   - mvn --version
-
+  - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" --user=root
 
 build_script:
-  - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" --user=root
   - mvn clean package --batch-mode -DskipTest
 
 test_script:
