@@ -6,7 +6,7 @@ environment:
   MYSQL_PORT: tcp://localhost:3306
   MYSQL_ENV_MYSQL_USER: root
   MYSQL_ENV_MYSQL_PASSWORD: Password12!
-  MYSQL_PWD: %MYSQL_ENV_MYSQL_PASSWORD%
+  MYSQL_PWD: Password12!
 
 services:
   - mysql
