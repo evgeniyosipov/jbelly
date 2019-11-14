@@ -14,7 +14,7 @@ init:
   - mvn --version
 
 before_build:
-  - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" --user=root
+  - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
 build_script:
   - mvn clean package --batch-mode -DskipTest
