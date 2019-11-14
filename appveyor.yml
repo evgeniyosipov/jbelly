@@ -18,7 +18,7 @@ init:
   - mvn --version
 
 install:
-  - cmd: '"C:\Program Files\MySQL\MySQL Server 5.7\bin\mysql" -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" --user=root'
+  - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" --user=root
 
 build_script:
   - mvn clean package --batch-mode -DskipTest
