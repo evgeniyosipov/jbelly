@@ -4,6 +4,8 @@
 
 Lightweight Java Blog Engine based on Spring Boot.
 
+[![Build Status](https://travis-ci.com/evgeniyosipov/jbelly.svg?branch=master)](https://travis-ci.com/evgeniyosipov/jbelly)
+
 Built with:
 * Spring Boot 2.2 (web, security, jpa, devtools)
 * Thymeleaf (engine + springsecurity5)
@@ -16,7 +18,17 @@ Built with:
 
 <br />
 
-Before launch need to start MySQL/MariaDB server and create **jbelly** database with UTF-8 encoding (utf8mb4_unicode_ci). 
+Before launch need to start MySQL/MariaDB server and create **jbelly** database with UTF-8 encoding (utf8mb4_unicode_ci).
+
+$ mysql -u root -p
+
+$ mysql> CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+$ mysql> GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@localhost IDENTIFIED BY 'jbelly';
+
+$ mysql> FLUSH PRIVILEGES;
+
+$ mysql> QUIT;
 
 Please, see [application.properties](src/main/resources/application.properties) for additional settings.
 
