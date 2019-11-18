@@ -14,8 +14,7 @@ init:
 
 before_build:
   - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" --user=root --password=Password12!
-  - mysql -e "use mysql;" --user=root --password=Password12!
-  - mysql -e "flush privileges;" --user=root --password=
+  - mysql -e "use mysql;flush privileges;exit;" --user=root --password=Password12!
 
 build_script:
   - mvn clean package --batch-mode -DskipTest
