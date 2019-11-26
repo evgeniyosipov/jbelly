@@ -25,7 +25,7 @@ $ mysql -u root -p
 
 $ mysql> CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-$ mysql> GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@localhost IDENTIFIED BY 'jbelly';
+$ mysql> GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@'%' IDENTIFIED BY 'jbelly';
 
 $ mysql> FLUSH PRIVILEGES;
 
