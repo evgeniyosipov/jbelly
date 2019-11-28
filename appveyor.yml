@@ -15,7 +15,7 @@ init:
 
 before_build:
   - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" -u root
-  - mysql -e "GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@localhost IDENTIFIED BY 'jbelly';FLUSH PRIVILEGES;" -u root
+  - mysql -e "GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@'%' IDENTIFIED BY 'jbelly';FLUSH PRIVILEGES;" -u root
 
 build_script:
   - mvn clean package --batch-mode -DskipTest
