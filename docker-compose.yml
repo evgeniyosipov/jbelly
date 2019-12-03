@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-   jbelly_db:
+   db:
      image: mariadb/server:10.4
      volumes:
-       - jbelly_db_data:/var/lib/mysql
+      - /opt/jbelly_docker_data/db/mysql:/var/lib/mysql
      environment:
        MYSQL_ROOT_PASSWORD: mypass
        MYSQL_DATABASE: jbelly
@@ -12,22 +12,15 @@ services:
        MYSQL_PASSWORD: jbelly
      command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--skip-character-set-client-handshake"]
 
-   jbelly_app:
+   app:
      depends_on:
-       - jbelly_db
-     image: ubuntu:18.04
+       - db
+     image: jbelly_build
      ports:
        - "8080:8080"
-     working_dir: /root/jbelly
+     environment:
+       JBELLY_DB_HOSTNAME: db
      command: bash -c "
-       apt-get update -q && apt-get upgrade -q -y
-       && apt-get install -q -y openjdk-11-jdk
-       && apt-get install -q -y maven
-       && apt-get install -q -y git
-       && apt-get clean
-       && cd /root/jbelly
-       && git clone https://github.com/evgeniyosipov/jbelly.git .
+       git pull
+       && mvn spring-boot:run
        "
-       
-volumes:
-    jbelly_db_data: {}

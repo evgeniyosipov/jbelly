@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-WORKDIR ~/jbelly
+WORKDIR ~/jbelly_build
 
 RUN apt-get update -q && apt-get upgrade -q -y
 RUN apt-get install -q -y openjdk-11-jdk
