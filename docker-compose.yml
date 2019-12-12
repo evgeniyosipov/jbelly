@@ -20,6 +20,7 @@ services:
        - "8080:8080"
      environment:
        JBELLY_MYSQL_HOST: db
+       JBELLY_MYSQL_PORT: 3306
      command: bash -c "
        git pull
        && mvn spring-boot:run
