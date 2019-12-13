@@ -15,7 +15,7 @@ services:
    app:
      depends_on:
        - db
-     image: jbelly_build
+     image: evgeniyosipov/jbelly_build
      ports:
        - "8080:8080"
      environment:
