@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+   db:
+     image: mariadb/server:10.4
+     volumes:
+      - /opt/jbelly_docker_data/db/mysql:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD: mypass
+       MYSQL_DATABASE: jbelly
+       MYSQL_USER: jbelly
+       MYSQL_PASSWORD: jbelly
+     command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--skip-character-set-client-handshake"]
+
+   app:
+     depends_on:
+       - db
+     image: evgeniyosipov/jbelly_build
+     ports:
+       - "8080:8080"
+     environment:
+       JBELLY_MYSQL_HOST: db
+       JBELLY_MYSQL_PORT: 3306
+     command: bash -c "
+       git pull
+       && mvn spring-boot:run
+       "

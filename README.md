@@ -37,17 +37,29 @@ Please, see [application.properties](src/main/resources/application.properties) 
 
 Can be build/run in any IDE that supporting Maven projects or manually:
 
+* With **predefined** environment variables (**JBELLY_MYSQL_HOST=localhost** and **JBELLY_MYSQL_PORT=3306**):
+
 **Full:**
 
-$ mvn clean
-
-$ mvn package
+$ mvn clean package
 
 $ java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar
 
 **Short:**
 
 $ mvn spring-boot:run
+
+* For the **custom** host and port, set the PATH variables or run with arguments:
+
+**Full:**
+
+mvn clean package -DJBELLY_MYSQL_HOST=localhost -DJBELLY_MYSQL_PORT=3306
+
+java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar --JBELLY_MYSQL_HOST=localhost --JBELLY_MYSQL_PORT=3306
+
+**Short:**
+
+mvn spring-boot:run -Dspring-boot.run.arguments=--JBELLY_MYSQL_HOST=localhost,--JBELLY_MYSQL_PORT=3306
 
 <br />
 
