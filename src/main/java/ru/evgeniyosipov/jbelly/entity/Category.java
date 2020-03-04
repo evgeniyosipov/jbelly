@@ -11,9 +11,10 @@ public class Category {
     private String name;
     private Set<Article> articles;
 
-    public Category(){}
+    public Category() {
+    }
 
-    public Category(String name){
+    public Category(String name) {
         this.name = name;
         this.articles = new HashSet<>();
     }

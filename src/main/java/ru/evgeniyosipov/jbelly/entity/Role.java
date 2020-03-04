@@ -13,16 +13,16 @@ public class Role {
     private String name;
     private Set<User> users;
 
-    public Role(){
+    public Role() {
         this.users = new HashSet<>();
     }
 
     @Transient
-    public String getSimpleName(){
+    public String getSimpleName() {
         return StringUtils.capitalize(this.getName().substring(5).toLowerCase());
     }
 
-    @ManyToMany (mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles")
     public Set<User> getUsers() {
         return users;
     }

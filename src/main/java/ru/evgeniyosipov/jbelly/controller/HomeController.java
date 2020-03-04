@@ -26,39 +26,33 @@ public class HomeController {
     private TagRepository tagRepository;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         List<Article> articles = this.articleRepository.findAll();
         List<Category> categories = this.categoryRepository.findAll();
         List<Tag> tags = this.tagRepository.findAll();
-
         model.addAttribute("view", "home/index");
         model.addAttribute("categories", categories);
         model.addAttribute("articles", articles);
         model.addAttribute("tags", tags);
-
         return "base-layout";
     }
 
     @RequestMapping("/error/403")
-    public String accessDenied(Model model){
+    public String accessDenied(Model model) {
         model.addAttribute("view", "error/403");
-
         return "base-layout";
     }
 
     @GetMapping("/category/{id}")
-    public String listArticles(Model model, @PathVariable Integer id){
-        if(!this.categoryRepository.existsById(id)){
+    public String listArticles(Model model, @PathVariable Integer id) {
+        if (!this.categoryRepository.existsById(id)) {
             return "redirect:/";
         }
-
         Category category = this.categoryRepository.findById(id).orElse(null);
         Set<Article> articles = category.getArticles();
-
         model.addAttribute("view", "home/list-articles");
         model.addAttribute("articles", articles);
         model.addAttribute("category", category);
-
         return "base-layout";
     }
 }

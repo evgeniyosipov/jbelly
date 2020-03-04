@@ -11,9 +11,10 @@ public class Tag {
     private String name;
     private Set<Article> articles;
 
-    public Tag(){}
+    public Tag() {
+    }
 
-    public Tag(String name){
+    public Tag(String name) {
         this.name = name;
         this.articles = new HashSet<>();
     }

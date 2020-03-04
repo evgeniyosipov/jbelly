@@ -32,7 +32,6 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("view", "user/register");
-
         return "base-layout";
     }
 
@@ -41,28 +40,21 @@ public class UserController {
         if (!userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())) {
             return "redirect:/register";
         }
-
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
         User user = new User(
                 userBindingModel.getEmail(),
                 userBindingModel.getFullName(),
                 bCryptPasswordEncoder.encode(userBindingModel.getPassword())
         );
-
         Role userRole = this.roleRepository.findByName("ROLE_USER");
-
         user.addRole(userRole);
-
         this.userRepository.saveAndFlush(user);
-
         return "redirect:/login";
     }
 
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("view", "user/login");
-
         return "base-layout";
     }
 
@@ -72,7 +64,6 @@ public class UserController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-
         return "redirect:/login?logout";
     }
 
@@ -82,12 +73,9 @@ public class UserController {
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
-
         User user = this.userRepository.findByEmail(principal.getUsername());
-
         model.addAttribute("user", user);
         model.addAttribute("view", "user/profile");
-
         return "base-layout";
     }
 }

@@ -26,8 +26,7 @@ public class BlogUserDetailsService implements UserDetailsService {
 
         if (user == null) {
             throw new UsernameNotFoundException("Invalid User");
-        }
-        else {
+        } else {
             Set<GrantedAuthority> grantedAuthorities = user.getRoles()
                     .stream()
                     .map(role -> new SimpleGrantedAuthority(role.getName()))

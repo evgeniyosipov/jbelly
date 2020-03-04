@@ -27,19 +27,19 @@ public class User {
         this.articles = new HashSet<>();
     }
 
-    public void addRole(Role role){
+    public void addRole(Role role) {
         this.roles.add(role);
     }
 
     @Transient
-    public boolean isAdmin(){
+    public boolean isAdmin() {
         return this.getRoles()
                 .stream()
                 .anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
     }
 
     @Transient
-    public boolean isAuthor(Article article){
+    public boolean isAuthor(Article article) {
         return Objects.equals(this.getId(), article.getAuthor().getId());
     }
 
@@ -81,7 +81,7 @@ public class User {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="users_roles")
+    @JoinTable(name = "users_roles")
     public Set<Role> getRoles() {
         return roles;
     }

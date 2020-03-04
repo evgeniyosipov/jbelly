@@ -13,20 +13,19 @@ public class BlogUserDetails extends User implements UserDetails {
     private ArrayList<String> roles;
     private User user;
 
-    public BlogUserDetails (User user, ArrayList<String> roles){
+    public BlogUserDetails(User user, ArrayList<String> roles) {
         super(user.getEmail(), user.getFullName(), user.getPassword());
-
         this.roles = roles;
         this.user = user;
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         String userRoles = StringUtils.collectionToCommaDelimitedString(this.roles);
         return AuthorityUtils.commaSeparatedStringToAuthorityList(userRoles);
     }
 
-    public User getUser(){
+    public User getUser() {
         return this.user;
     }
 
@@ -36,22 +35,22 @@ public class BlogUserDetails extends User implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonExpired(){
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked(){
+    public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired(){
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return true;
     }
 }

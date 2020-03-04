@@ -32,93 +32,72 @@ public class AdminUserController {
     private RoleRepository roleRepository;
 
     @GetMapping("/")
-    public String listUsers(Model model){
+    public String listUsers(Model model) {
         List<User> users = this.userRepository.findAll();
-
         model.addAttribute("users", users);
         model.addAttribute("view", "admin/user/list");
-
         return "base-layout";
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model){
-        if(!this.userRepository.existsById(id)){
+    public String edit(@PathVariable Integer id, Model model) {
+        if (!this.userRepository.existsById(id)) {
             return "redirect:/admin/users/";
         }
-
         User user = this.userRepository.findById(id).orElse(null);
         List<Role> roles = this.roleRepository.findAll();
-
         model.addAttribute("user", user);
         model.addAttribute("roles", roles);
         model.addAttribute("view", "admin/user/edit");
-
         return "base-layout";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, Model model){
-        if(!this.userRepository.existsById(id)){
+    public String delete(@PathVariable Integer id, Model model) {
+        if (!this.userRepository.existsById(id)) {
             return "redirect:/admin/users/";
         }
-
         User user = this.userRepository.findById(id).orElse(null);
-
         model.addAttribute("user", user);
         model.addAttribute("view", "admin/user/delete");
-
         return "base-layout";
     }
 
     @PostMapping("/edit/{id}")
-    public String editProcess(@PathVariable Integer id, UserEditBindingModel userBindingModel){
-        if(!this.userRepository.existsById(id)){
+    public String editProcess(@PathVariable Integer id, UserEditBindingModel userBindingModel) {
+        if (!this.userRepository.existsById(id)) {
             return "redirect:/admin/users/";
         }
-
         User user = this.userRepository.findById(id).orElse(null);
-
-        if(!StringUtils.isEmpty(userBindingModel.getPassword())
-            && !StringUtils.isEmpty(userBindingModel.getConfirmPassword())){
-
-            if(userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())){
+        if (!StringUtils.isEmpty(userBindingModel.getPassword())
+                && !StringUtils.isEmpty(userBindingModel.getConfirmPassword())) {
+            if (userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())) {
                 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
                 user.setPassword(bCryptPasswordEncoder.encode(userBindingModel.getPassword()));
             }
         }
-
         user.setFullName(userBindingModel.getFullName());
         user.setEmail(userBindingModel.getEmail());
-
         Set<Role> roles = new HashSet<>();
-
-        for(Integer roleId : userBindingModel.getRoles()){
+        for (Integer roleId : userBindingModel.getRoles()) {
             roles.add(this.roleRepository.findById(roleId).orElse(null));
         }
-
         user.setRoles(roles);
-
         this.userRepository.saveAndFlush(user);
-
         return "redirect:/admin/users/";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteProcess(@PathVariable Integer id){
-        if(!this.userRepository.existsById(id)){
+    public String deleteProcess(@PathVariable Integer id) {
+        if (!this.userRepository.existsById(id)) {
             return "redirect:/admin/users/";
         }
-
         User user = this.userRepository.findById(id).orElse(null);
-
-        for(Article article : user.getArticles()){
+        for (Article article : user.getArticles()) {
             this.articleRepository.delete(article);
         }
-
         this.userRepository.delete(user);
-
         return "redirect:/admin/users/";
     }
 }

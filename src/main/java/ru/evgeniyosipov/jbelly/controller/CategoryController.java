@@ -28,97 +28,76 @@ public class CategoryController {
     private ArticleRepository articleRepository;
 
     @GetMapping("/")
-    public String list(Model model){
+    public String list(Model model) {
         List<Category> categories = this.categoryRepository.findAll();
-
         categories = categories.stream()
                 .sorted(Comparator.comparingInt(Category::getId))
                 .collect(Collectors.toList());
-
         model.addAttribute("view", "admin/category/list");
         model.addAttribute("categories", categories);
-
         return "base-layout";
     }
 
     @GetMapping("/create")
-    public String create(Model model){
+    public String create(Model model) {
         model.addAttribute("view", "admin/category/create");
-
         return "base-layout";
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(Model model, @PathVariable Integer id){
-        if(!this.categoryRepository.existsById(id)){
+    public String edit(Model model, @PathVariable Integer id) {
+        if (!this.categoryRepository.existsById(id)) {
             return "redirect:/admin/categories/";
         }
-
         Category category = this.categoryRepository.findById(id).orElse(null);
-
         model.addAttribute("view", "admin/category/edit");
         model.addAttribute("category", category);
-
         return "base-layout";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(Model model, @PathVariable Integer id){
-        if(!this.categoryRepository.existsById(id)){
+    public String delete(Model model, @PathVariable Integer id) {
+        if (!this.categoryRepository.existsById(id)) {
             return "redirect:/admin/categories/";
         }
-
         Category category = this.categoryRepository.findById(id).orElse(null);
-
         model.addAttribute("view", "admin/category/delete");
         model.addAttribute("category", category);
-
         return "base-layout";
     }
 
     @PostMapping("/create")
-    public String createProcess(CategoryBindingModel categoryBindingModel){
-        if(StringUtils.isEmpty(categoryBindingModel.getName())){
+    public String createProcess(CategoryBindingModel categoryBindingModel) {
+        if (StringUtils.isEmpty(categoryBindingModel.getName())) {
             return "redirect:/admin/categories/create";
         }
-
         Category category = new Category(categoryBindingModel.getName());
-
         this.categoryRepository.saveAndFlush(category);
-
         return "redirect:/admin/categories/";
     }
 
     @PostMapping("/edit/{id}")
     public String editProcess(@PathVariable Integer id,
-                              CategoryBindingModel categoryBindingModel){
-        if(!this.categoryRepository.existsById(id)){
+                              CategoryBindingModel categoryBindingModel) {
+        if (!this.categoryRepository.existsById(id)) {
             return "redirect:/admin/categories/";
         }
-
         Category category = this.categoryRepository.findById(id).orElse(null);
-
         category.setName(categoryBindingModel.getName());
-
         this.categoryRepository.saveAndFlush(category);
-
         return "redirect:/admin/categories/";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteProcess(@PathVariable Integer id){
-        if(!this.categoryRepository.existsById(id)){
+    public String deleteProcess(@PathVariable Integer id) {
+        if (!this.categoryRepository.existsById(id)) {
             return "redirect:/admin/categories/";
         }
-
         Category category = this.categoryRepository.findById(id).orElse(null);
-
-        for(Article article : category.getArticles()){
+        for (Article article : category.getArticles()) {
             this.articleRepository.delete(article);
         }
-
         this.categoryRepository.delete(category);
-
         return "redirect:/admin/categories/";
     }
 }
