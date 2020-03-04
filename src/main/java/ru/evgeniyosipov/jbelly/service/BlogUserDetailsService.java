@@ -23,7 +23,6 @@ public class BlogUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
-
         if (user == null) {
             throw new UsernameNotFoundException("Invalid User");
         } else {
@@ -31,7 +30,6 @@ public class BlogUserDetailsService implements UserDetailsService {
                     .stream()
                     .map(role -> new SimpleGrantedAuthority(role.getName()))
                     .collect(Collectors.toSet());
-
             return new org
                     .springframework
                     .security
