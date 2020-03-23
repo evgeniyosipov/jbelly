@@ -5,15 +5,11 @@ import javax.validation.constraints.NotNull;
 public class ArticleBindingModel {
     @NotNull
     private String title;
-
     @NotNull
     private String entry;
-
     @NotNull
     private String content;
-
     private String tagString;
-
     private Integer categoryId;
 
     public String getTitle() {

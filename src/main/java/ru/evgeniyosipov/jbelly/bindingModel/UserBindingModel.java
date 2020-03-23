@@ -5,13 +5,10 @@ import javax.validation.constraints.NotNull;
 public class UserBindingModel {
     @NotNull
     private String email;
-
     @NotNull
     private String fullName;
-
     @NotNull
     private String password;
-
     @NotNull
     private String confirmPassword;
 
