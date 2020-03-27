@@ -12,7 +12,7 @@ import ru.evgeniyosipov.jbelly.config.TestContextInitializer;
 @SpringBootTest
 public class JbellyApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void contextLoads() {
+    }
 }
