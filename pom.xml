@@ -92,8 +92,8 @@
                             <webappTargetDir>${project.build.outputDirectory}/static</webappTargetDir>
                             <cssSourceDir>css</cssSourceDir>
                             <cssSourceFiles>
-                                <jsSourceFile>bootstrap.css</jsSourceFile>
-                                <jsSourceFile>summernote.css</jsSourceFile>
+                                <cssSourceFile>bootstrap.css</cssSourceFile>
+                                <cssSourceFile>summernote.css</cssSourceFile>
                             </cssSourceFiles>
                             <jsSourceDir>js</jsSourceDir>
                             <jsSourceFiles>
