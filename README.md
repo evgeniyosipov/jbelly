@@ -76,7 +76,3 @@ Please, see <a href="SAMPLE-IMAGES.md">SAMPLE-IMAGES.md</a> for more screenshots
 <br />
 
 Big thanks to SoftUni and Svetlin Nakov for great information.
-
-Also special thanks to JetBrains for providing Intellij IDEA Ultimate license for this project.
-
-<a href="https://www.jetbrains.com/?from=Jbelly"><img src="sample-images/jetbrains.png" width="150"/></a>
