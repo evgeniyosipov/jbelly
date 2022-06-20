@@ -74,5 +74,3 @@ User user@example.com password: 1
 Please, see <a href="SAMPLE-IMAGES.md">SAMPLE-IMAGES.md</a> for more screenshots.
 
 <br />
-
-Big thanks to SoftUni and Svetlin Nakov for great information.
