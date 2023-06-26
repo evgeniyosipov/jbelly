@@ -1,6 +1,6 @@
 # Jbelly
 
-<img src="sample-images/jbelly-index.PNG"/>
+<img src="sample-images/jbelly-index.PNG" alt=""/>
 
 Lightweight Java Blog Engine based on Spring Boot.
 
@@ -10,7 +10,7 @@ Lightweight Java Blog Engine based on Spring Boot.
 Built with:
 * Spring Boot 2.7 (web, security, jpa, devtools)
 * Thymeleaf (engine + springsecurity5)
-* Java 11
+* Java 17
 * MySQL/MariaDB
 * Maven
 * JQuery
@@ -23,13 +23,15 @@ Before launch need to start MySQL/MariaDB server and create **jbelly** database 
 
 $ mysql -u root -p
 
+$ mysql> CREATE USER jbelly@'%' IDENTIFIED BY 'jbelly';
+
 $ mysql> CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-$ mysql> GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@'%' IDENTIFIED BY 'jbelly';
+$ mysql> GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@'%';
 
 $ mysql> FLUSH PRIVILEGES;
 
-$ mysql> QUIT;
+$ mysql> QUIT
 
 Please, see [application.properties](src/main/resources/application.properties) for additional settings.
 
