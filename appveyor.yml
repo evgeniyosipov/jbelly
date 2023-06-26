@@ -1,6 +1,8 @@
-image: Visual Studio 2022
+image:
+  Visual Studio 2019
 
-version: '{build}'
+version:
+  '{build}'
 
 environment:
   JAVA_HOME: C:\Program Files\Java\jdk17
@@ -16,11 +18,13 @@ init:
   - mvn --version
 
 before_build:
+  - mysql -e "CREATE USER jbelly@'%' IDENTIFIED BY 'jbelly';" -u root
   - mysql -e "CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" -u root
-  - mysql -e "GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@'%' IDENTIFIED BY 'jbelly';FLUSH PRIVILEGES;" -u root
+  - mysql -e "GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@'%';" -u root
+  - mysql -e "FLUSH PRIVILEGES;" -u root
 
 build_script:
-  - mvn clean package --batch-mode -DskipTest
+  - ./mvnw install --batch-mode --show-version
 
 test_script:
-  - mvn clean install --batch-mode
+  - ./mvnw test --batch-mode --show-version
