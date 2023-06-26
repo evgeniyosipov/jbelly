@@ -1,8 +1,8 @@
 language: java
 
-dist: bionic
+dist: jammy
 
-jdk: openjdk11
+jdk: openjdk17
 
 services:
   - mysql
