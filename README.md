@@ -8,8 +8,8 @@ Lightweight Java Blog Engine based on Spring Boot.
 [![Build status](https://ci.appveyor.com/api/projects/status/828dv3mgy94efa9a?svg=true)](https://ci.appveyor.com/project/evgeniyosipov/jbelly)
 
 Built with:
-* Spring Boot 2.7 (web, security, jpa, devtools)
-* Thymeleaf (engine + springsecurity5)
+* Spring Boot 3.1 (web, security, jpa, devtools)
+* Thymeleaf (engine + springsecurity6)
 * Java 17
 * MySQL/MariaDB
 * Maven
