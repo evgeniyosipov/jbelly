@@ -1,6 +1,6 @@
 package ru.evgeniyosipov.jbelly.bindingModel;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class ArticleBindingModel {
     @NotNull

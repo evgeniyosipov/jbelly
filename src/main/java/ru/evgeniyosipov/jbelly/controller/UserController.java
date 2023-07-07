@@ -19,8 +19,8 @@ import ru.evgeniyosipov.jbelly.entity.User;
 import ru.evgeniyosipov.jbelly.repository.RoleRepository;
 import ru.evgeniyosipov.jbelly.repository.UserRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
