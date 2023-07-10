@@ -119,6 +119,7 @@
                             <jsEngine>CLOSURE</jsEngine>
                             <closureWarningLevels>
                                 <nonStandardJsDocs>OFF</nonStandardJsDocs>
+                                <misplacedTypeAnnotation>OFF</misplacedTypeAnnotation>
                             </closureWarningLevels>
                             <skipMerge>true</skipMerge>
                             <nosuffix>true</nosuffix>
