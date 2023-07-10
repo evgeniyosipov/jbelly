@@ -11,7 +11,7 @@ Built with:
 * Spring Boot 3.1 (web, security, jpa, devtools)
 * Thymeleaf (engine + springsecurity6)
 * Java 17
-* MySQL/MariaDB
+* MySQL 8
 * Maven
 * JQuery
 * Bootstrap 3
@@ -19,13 +19,13 @@ Built with:
 
 <br />
 
-Before launch need to start MySQL/MariaDB server and create **jbelly** database with UTF-8 encoding (utf8mb4_unicode_ci).
+Before launching need to start MySQL 8 server, then create user and database:
 
 $ mysql -u root -p
 
 $ mysql> CREATE USER jbelly@'%' IDENTIFIED BY 'jbelly';
 
-$ mysql> CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+$ mysql> CREATE DATABASE jbelly CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
 $ mysql> GRANT ALL PRIVILEGES ON jbelly.* TO jbelly@'%';
 
