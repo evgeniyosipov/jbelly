@@ -1,10 +1,12 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 WORKDIR /root/jbelly
 
-RUN apt-get update -q && apt-get upgrade -q -y && \
-    apt-get install -q -y openjdk-11-jdk maven git && \
-    apt-get clean && \
-    git clone https://github.com/evgeniyosipov/jbelly.git .
+RUN apt-get update && apt-get install -y \
+    openjdk-17-jdk-headless \
+    git \
+    && rm -rf /var/lib/apt/lists/* \
+    && git clone https://github.com/evgeniyosipov/jbelly.git . \
+    && chmod +x /root/jbelly/mvnw
 
 EXPOSE 8080
