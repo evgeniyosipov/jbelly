@@ -63,6 +63,10 @@ java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar --JBELLY_MYSQL_HOS
 
 mvn spring-boot:run -D"spring-boot.run.arguments"="--JBELLY_MYSQL_HOST=localhost --JBELLY_MYSQL_PORT=3306"
 
+* Docker:
+
+docker compose up
+
 <br />
 
 Blog url - http://localhost:8080/
