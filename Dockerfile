@@ -7,6 +7,6 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/* \
     && git clone https://github.com/evgeniyosipov/jbelly.git . \
-    && chmod +x /root/jbelly/mvnw
+    && chmod +x ./mvnw
 
 EXPOSE 8080
