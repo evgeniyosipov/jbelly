@@ -43,29 +43,29 @@ Can be build/run in any IDE that supporting Maven projects or manually:
 
 **Full:**
 
-$ mvn clean package
+$ ./mvnw clean package
 
 $ java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar
 
 **Short:**
 
-$ mvn spring-boot:run
+$ ./mvnw spring-boot:run
 
 * For the **custom** host and port, set the PATH variables or run with arguments:
 
 **Full:**
 
-mvn clean package -DJBELLY_MYSQL_HOST=localhost -DJBELLY_MYSQL_PORT=3306
+$ ./mvnw clean package -DJBELLY_MYSQL_HOST=localhost -DJBELLY_MYSQL_PORT=3306
 
-java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar --JBELLY_MYSQL_HOST=localhost --JBELLY_MYSQL_PORT=3306
+$ java -jar -Xmx64m -Xss256k ./target/jbelly-0.0.1-SNAPSHOT.jar --JBELLY_MYSQL_HOST=localhost --JBELLY_MYSQL_PORT=3306
 
 **Short:**
 
-mvn spring-boot:run -D"spring-boot.run.arguments"="--JBELLY_MYSQL_HOST=localhost --JBELLY_MYSQL_PORT=3306"
+$ ./mvnw mvn spring-boot:run -D"spring-boot.run.arguments"="--JBELLY_MYSQL_HOST=localhost --JBELLY_MYSQL_PORT=3306"
 
 * Docker:
 
-docker compose up
+$ docker compose up
 
 <br />
 
