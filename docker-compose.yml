@@ -21,5 +21,5 @@ services:
        JBELLY_MYSQL_PORT: 3306
      command: bash -c "
        git pull
-       && ./mvnw spring-boot:run -B -V
+       && ./mvnw spring-boot:run
        "
