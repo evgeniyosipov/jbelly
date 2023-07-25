@@ -8,7 +8,7 @@ services:
        MYSQL_DATABASE: jbelly
        MYSQL_USER: jbelly
        MYSQL_PASSWORD: jbelly
-     command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci", "--skip-character-set-client-handshake"]
+     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci --skip-character-set-client-handshake
 
    app:
      depends_on:
