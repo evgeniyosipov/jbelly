@@ -10,9 +10,10 @@ environment:
   MYSQL_PWD: Password12!
 
 services:
-  - ps: Start-Service MySQL80
+  - mysql
 
 init:
+  - ps: Start-Service MySQL80
   - SET PATH=%JAVA_HOME%\bin;%MYSQL_PATH%\bin;%PATH%
   - javac -version
   - mvn --version
