@@ -11,7 +11,7 @@ Lightweight Java Blog Engine based on Spring Boot.
 Built with:
 * Spring Boot 3.5 (web, security, jpa, devtools)
 * Thymeleaf (engine + springsecurity6)
-* Java 17
+* Java 21
 * MySQL 8
 * Maven
 * JQuery
