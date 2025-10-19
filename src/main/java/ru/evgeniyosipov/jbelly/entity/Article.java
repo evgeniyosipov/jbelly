@@ -64,7 +64,7 @@ public class Article {
         this.content = content;
     }
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(nullable = false, name = "authorId")
     public User getAuthor() {
         return author;
@@ -84,8 +84,12 @@ public class Article {
         this.category = category;
     }
 
-    @ManyToMany()
-    @JoinColumn(table = "articles_tags")
+    @ManyToMany
+    @JoinTable(
+            name = "articles_tags",
+            joinColumns = @JoinColumn(name = "articles_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_id")
+    )
     public Set<Tag> getTags() {
         return tags;
     }
