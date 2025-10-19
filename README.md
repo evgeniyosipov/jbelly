@@ -9,7 +9,7 @@ Lightweight Java Blog Engine based on Spring Boot.
 [![Java CI with Maven](https://github.com/evgeniyosipov/jbelly/actions/workflows/maven.yml/badge.svg)](https://github.com/evgeniyosipov/jbelly/actions/workflows/maven.yml)
 
 Built with:
-* Spring Boot 3.1 (web, security, jpa, devtools)
+* Spring Boot 3.5 (web, security, jpa, devtools)
 * Thymeleaf (engine + springsecurity6)
 * Java 17
 * MySQL 8
