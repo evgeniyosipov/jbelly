@@ -5,7 +5,7 @@ version:
   '{build}'
 
 environment:
-  JAVA_HOME: C:\Program Files\Java\jdk17
+  JAVA_HOME: C:\Program Files\Java\jdk21
   MYSQL_PATH: C:\Program Files\MySQL\MySQL Server 8.0
   MYSQL_PWD: Password12!
 
